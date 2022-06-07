@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
     res.status(200).send("Hello World")
 })
 app.use("/", require("./routes/booking"))
+app.use("/admin", require("./routes/admin"))
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
