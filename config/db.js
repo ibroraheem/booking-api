@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const url = 'mongodb://localhost:27017/'
+const url = process.env.MONGODB_URL
 const connectDB = async () => {
   await mongoose.connect(url, {
     useNewUrlParser: true,
