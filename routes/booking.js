@@ -9,3 +9,4 @@ router.route("/event").post(Event.bookEvent)
 router.route("/course").post(Course.registerCourse)
 module.exports = router
 
+

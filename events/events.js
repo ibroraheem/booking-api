@@ -1,4 +1,5 @@
 const Events = require("../model/event")
+const QRCode = require('qrcode')
 
 exports.bookEvent = async (req, res, next) => {
     const { registrant_name, email, phone, event_date, event_duration, event_type } = req.body
@@ -6,7 +7,21 @@ exports.bookEvent = async (req, res, next) => {
         await Events.create({
             registrant_name, email, phone, event_date, event_duration, event_type
         }).then(() => {
-            res.status(200).send("Event booked successfully")
+            QRCode.toDataURL(`${registrant_name} ${email} ${phone} ${event_date} ${event_duration} ${event_type}`, (err, url) => {
+                if (err) {
+                    res.status(500).json({
+                        message: "Error in generating QR Code",
+                        error: err
+                    })
+                } else {
+                    res.status(200).json({
+                        message: "Event Booked Successfully",
+                        url: url
+                    })
+
+                }
+            })
+            
         })
     } else {
         res.status(404).json({ message: "Please fill all the fields" })
