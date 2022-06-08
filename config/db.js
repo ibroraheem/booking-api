@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const url = process.env.MONGODB_URL || 'mongodb://localhost:27017/booking'
+const url = process.env.MONGODB_URL
 
 
 const connectDB =  () => {
