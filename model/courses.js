@@ -12,15 +12,15 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    guardian_name:{
+    guardianName:{
         type: String,
         required: true
     },
-    guardian_phone:{
+    guardianPhone:{
         type: String,
         required: true
     },
-    guardian_address:{
+    guardianAddress:{
         type: String,
         required: true
     },
@@ -28,16 +28,14 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    stack:{
-        type: String,
-    },
     duration:{
         type: String,
         required: true
     },
     fee:{
         type: String,
-        required: true
+        required: true,
+        default: '20000'
     }
 })
 

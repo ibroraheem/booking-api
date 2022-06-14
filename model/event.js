@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const EventSchema = new mongoose.Schema({
-    registrant_name: {
+    name: {
         type: String,
         required: true
     },
@@ -12,15 +12,15 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    event_date: {
+    date: {
         type: String,
         required: true
     },
-    event_duration: {
+    duration: {
         type: String,
         required: true
     },
-    event_type: {
+    type: {
         type: String,
         required: true
     },
