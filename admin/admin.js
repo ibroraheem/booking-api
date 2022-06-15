@@ -6,6 +6,7 @@ exports.Login = async (req, res, next) => {
         const validPassword = await bcrypt.compare(password, password)
         if(validPassword){
             await Admin.findOne({email}).then(admin => {
+                res.send({token: 'test123'})
                 res.status(200).json({
                     message: "Login successful",
                     admin
@@ -26,7 +27,7 @@ exports.Login = async (req, res, next) => {
             message: "Login failed"
         })
     }   
-    
+
 }
 
 exports.Register = async (req, res) => {
@@ -52,4 +53,21 @@ exports.Register = async (req, res) => {
         res.status(404).json({ message: "Please fill all the fields" })
     }
 
+} 
+exports.ForgotPassword = async (req, res) => {
+    const { email } = req.body
+    if (email) {
+        await Admin.findOne({ email }).then(admin => {
+            if (admin) {
+                res.status(200).json({ message: "Password reset link sent to your email" })
+            } else {
+                res.status(404).json({ message: "Email not found" })
+            }
+        }).catch(err => {
+            res.status(404).json({ message: "Something went wrong" })
+        }
+        )
+    } else {
+        res.status(404).json({ message: "Please fill all the fields" })
+    }
 }

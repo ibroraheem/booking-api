@@ -32,3 +32,16 @@ exports.bookWorkspace = async (req, res, next) => {
         res.status(404).json({ message: "Please fill all the fields" })
     }
 }
+exports.bookedSpaces = async (req, res, next) => {
+    await Workspace.find({}).then(async (data) => {
+        res.status(200).json({
+            message: "Booked Spaces",
+            data: data
+        })
+    }).catch(err => {
+        res.status(500).json({
+            message: "Error in getting booked spaces",
+            error: err
+        })
+    })
+}
