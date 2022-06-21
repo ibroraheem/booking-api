@@ -27,3 +27,17 @@ exports.bookEvent = async (req, res, next) => {
         res.status(404).json({ message: "Please fill all the fields" })
     }
 }
+exports.bookedEvents = async (req, res, next) => {
+    await Events.find({}).then(events => {
+        res.status(200).json({
+            message: "Booked Events Displayed Successfully",
+            events: events
+        })
+    }).catch(err => {
+        res.status(500).json({
+            message: "Error in displaying booked events",
+            error: err
+        })
+    }
+    )
+}

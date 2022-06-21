@@ -13,7 +13,7 @@ const EventSchema = new mongoose.Schema({
         required: true
     },
     date: {
-        type: String,
+        type: Date,
         required: true
     },
     duration: {
@@ -24,10 +24,14 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    happened:{
+    happened: {
         type: Boolean,
-        default: false, 
-        required: false
+        default: false,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 })
 const Event = mongoose.model("Event", EventSchema)

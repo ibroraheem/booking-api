@@ -1,41 +1,45 @@
 const mongoose = require('mongoose')
 const CourseSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: true
     },
-    phone:{
+    phone: {
         type: String,
         required: true
     },
-    guardianName:{
+    guardianName: {
         type: String,
         required: true
     },
-    guardianPhone:{
+    guardianPhone: {
         type: String,
         required: true
     },
-    guardianAddress:{
+    guardianAddress: {
         type: String,
         required: true
     },
-    course:{
+    course: {
         type: String,
         required: true
     },
-    duration:{
+    duration: {
         type: String,
         required: true
     },
-    fee:{
+    fee: {
         type: String,
         required: true,
         default: '20000'
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 })
 

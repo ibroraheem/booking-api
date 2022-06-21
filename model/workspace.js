@@ -1,28 +1,32 @@
 const mongoose = require('mongoose')
 const WorkspaceSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: true
     },
-    phone:{
+    phone: {
         type: String,
         required: true
     },
-    from:{
-        type: String,
+    from: {
+        type: Date,
         required: true
-    }, 
-    to:{
+    },
+    to: {
+        type: Date,
+        required: true
+    },
+    amount: {
         type: String,
         required: true
     },
-    amount:{
-        type: String,
-        required: true
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 })
 

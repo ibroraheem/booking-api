@@ -7,7 +7,9 @@ const Course = require("../courses/courses")
 router.route("/workspace").post(Workspace.bookWorkspace)
 router.route("/event").post(Event.bookEvent)
 router.route("/course").post(Course.registerCourse)
-router.route("/workspace").get(Workspace.bookedSpaces)
+router.route("/bookedspaces").get(Workspace.bookedSpaces)
+router.route("/bookedevents").get(Event.bookedEvents)
+router.route("/trainees").get(Course.displayTrainees)
 module.exports = router
 
 

@@ -2,6 +2,7 @@ require("dotenv").config
 const Admin = require('../model/admin')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
 exports.Login = async (req, res) => {
     const { email, password } = req.body
     try {
@@ -40,6 +41,7 @@ exports.Login = async (req, res) => {
 exports.Register = async (req, res) => {
     const { name, email, password } = req.body
     try {
+        email = email.toLowerCase()
         const admin = await Admin.findOne({ email })
         if (admin) {
             return res.status(401).json({
@@ -63,6 +65,13 @@ exports.Register = async (req, res) => {
             message: "Error creating admin"
         })
     }
+}
+exports.Logout = async (req, res) => {
+    req.logout()
+    res.status(200).json({
+        message: "Logout Successful"
+    })
+
 }
 
 exports.ForgotPassword = async (req, res) => {
