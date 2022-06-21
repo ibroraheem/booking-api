@@ -63,7 +63,7 @@ exports.bookWorkspace = async (req, res, next) => {
     }
 }
 exports.bookedSpaces = async (req, res) => {
-    await Workspace.find({}).then(workspace => {
+    await Workspace.find({}).sort({ to: 1 }).then(workspace => {
         res.status(200).json({
             message: "Workspace Booking Successfully Displayed",
             workspace

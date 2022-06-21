@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+
+
 const WorkspaceSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -26,7 +28,12 @@ const WorkspaceSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now
+        default:  Date.now
+    },
+    status: {
+        type: String,
+        required: true,
+       default: 'Active'
     }
 })
 

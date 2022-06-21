@@ -14,7 +14,8 @@ exports.registerCourse = async (req, res) => {
 }
 
 exports.displayTrainees = async (req, res) => {
-    await Courses.find({}).then(trainees => {
+    await Courses.find({}).sort({createdAt: -1})
+    .then(trainees => {
         res.status(200).json({
             message: "Trainees Displayed Successfully",
             trainees
