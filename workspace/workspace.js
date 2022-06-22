@@ -4,10 +4,10 @@ const nodeMailer = require('nodemailer');
 const QRCode = require('qrcode')
 
 exports.bookWorkspace = async (req, res, next) => {
-    var { name, email, phone, from, to, amount } = req.body
-    if (name && email && phone && from && to && amount) {
+    var { name, email, phone, from, to } = req.body
+    if (name && email && phone && from && to) {
         await Workspace.create({
-            name, email, phone, from, to, amount
+            name, email, phone, from, to
         }).then(() => {
 
 
@@ -37,7 +37,7 @@ exports.bookWorkspace = async (req, res, next) => {
                 }
             })
 
-            QRCode.toDataURL(`${name} ${email} ${phone} ${from} ${to} ${amount}`, (err, url) => {
+            QRCode.toDataURL(`Name: ${name} <br /> Email: ${email} <br /> Phone: ${phone} <br /> Booked From: ${from} <br /> Till: ${to}`, (err, url) => {
                 if (err) {
                     res.status(500).json({
                         message: "Error in generating QR Code",

@@ -33,11 +33,7 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fee: {
-        type: String,
-        required: true,
-        default: '20000'
-    },
+    
     createdAt: {
         type: Date,
         default: Date.now

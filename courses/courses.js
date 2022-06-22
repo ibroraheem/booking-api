@@ -3,8 +3,8 @@ const nodeMailer = require('nodemailer');
 const QRCode = require('qrcode')
 
 exports.registerCourse = async (req, res) => {
-    const { name, email, phone, guardianName, guardianPhone, guardianAddress, course, duration, fee } = req.body
-    if (name && email && phone && guardianName && guardianPhone && guardianAddress && course && duration && fee) {
+    const { name, email, phone, guardianName, guardianPhone, guardianAddress, course, duration } = req.body
+    if (name && email && phone && guardianName && guardianPhone && guardianAddress && course && duration) {
         await Courses.create({
             name, email, phone, guardianName, guardianPhone, guardianAddress, course, duration, fee
         }).then(() => {
@@ -33,7 +33,7 @@ exports.registerCourse = async (req, res) => {
                     console.log(data);
                 }
             })
-            QRCode.toDataURL(`${name} ${email} ${phone} ${guardianName} ${guardianPhone} ${guardianAddress} ${course} ${duration} ${fee}`, (err, url) => {
+            QRCode.toDataURL(`Name: ${name} <br /> Email: ${email} <br /> Phone: ${phone}<br /> Guardian Name: ${guardianName} <br /> Guardian Phone: ${guardianPhone} <br /> Guardian Address: ${guardianAddress} <br /> Course: ${course}`, (err, url) => {
                 if (err) {
                     res.status(500).json({
                         message: "Error in generating QR Code",

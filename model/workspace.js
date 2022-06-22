@@ -29,11 +29,6 @@ const WorkspaceSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default:  Date.now
-    },
-    status: {
-        type: String,
-        required: true,
-       default: 'Active'
     }
 })
 

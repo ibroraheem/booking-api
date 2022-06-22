@@ -16,17 +16,8 @@ const EventSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    duration: {
-        type: String,
-        required: true
-    },
     type: {
         type: String,
-        required: true
-    },
-    happened: {
-        type: Boolean,
-        default: false,
         required: true
     },
     createdAt: {
