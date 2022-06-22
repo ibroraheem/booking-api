@@ -1,38 +1,13 @@
 const Courses = require("../model/courses")
-const nodeMailer = require('nodemailer');
 const QRCode = require('qrcode')
 
 exports.registerCourse = async (req, res) => {
-    const { name, email, phone, guardianName, guardianPhone, guardianAddress, course, duration } = req.body
-    if (name && email && phone && guardianName && guardianPhone && guardianAddress && course && duration) {
+    const { name, email, phone, guardianName, guardianPhone, guardianAddress, course } = req.body
+    if (name && email && phone && guardianName && guardianPhone && guardianAddress && course) {
         await Courses.create({
-            name, email, phone, guardianName, guardianPhone, guardianAddress, course, duration, fee
+            name, email, phone, guardianName, guardianPhone, guardianAddress, course
         }).then(() => {
-            let transporter = nodeMailer.createTransport({
-                host: "smtp.zoho.com",
-                secure: true,
-                port: 465,
-                auth: {
-                    user: process.env.USER,
-                    pass: process.env.PASS,
-                },
-            });
 
-            const mailOptions = {
-                from: "adminn@malhub.com.ng",
-                to: `${email}`,
-                subject: `Hello ${name}`,
-                body: `<h1>Welcome to Malhub</h1> <p>Your course has been registered successfully</p>`,
-            }
-
-            transporter.sendMail(mailOptions, (err, data) => {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    console.log(data);
-                }
-            })
             QRCode.toDataURL(`Name: ${name} <br /> Email: ${email} <br /> Phone: ${phone}<br /> Guardian Name: ${guardianName} <br /> Guardian Phone: ${guardianPhone} <br /> Guardian Address: ${guardianAddress} <br /> Course: ${course}`, (err, url) => {
                 if (err) {
                     res.status(500).json({
@@ -63,17 +38,17 @@ exports.registerCourse = async (req, res) => {
 }
 
 exports.displayTrainees = async (req, res) => {
-    await Courses.find({}).sort({createdAt: -1})
-    .then(trainees => {
-        res.status(200).json({
-            message: "Trainees Displayed Successfully",
-            trainees
-        })
-    }).catch(err => {
-        res.status(500).json({
-            message: "Error in displaying trainees",
-            error: err
-        })
-    }
-    )
+    await Courses.find({}).sort({ createdAt: -1 })
+        .then(trainees => {
+            res.status(200).json({
+                message: "Trainees Displayed Successfully",
+                trainees
+            })
+        }).catch(err => {
+            res.status(500).json({
+                message: "Error in displaying trainees",
+                error: err
+            })
+        }
+        )
 }
