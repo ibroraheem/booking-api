@@ -1,5 +1,6 @@
 const Events = require("../model/event")
 const QRCode = require('qrcode')
+require("dotenv").config()
 
 exports.bookEvent = async (req, res, next) => {
     const { registrant_name, email, phone, event_date, event_duration, event_type } = req.body
@@ -7,6 +8,32 @@ exports.bookEvent = async (req, res, next) => {
         await Events.create({
             registrant_name, email, phone, event_date, event_duration, event_type
         }).then(() => {
+
+            let transporter = nodeMailer.createTransport({
+                host: "smtp.zoho.com",
+                secure: true,
+                port: 465,
+                auth: {
+                    user: process.env.USER,
+                    pass: process.env.PASS,
+                },
+            });
+
+            const mailOptions = {
+                from: "admin@malhub.com.ng",
+                to: `${email}`,
+                subject: `Hello ${registrant_name}`,
+                body: `<h1>Welcome to Malhub</h1> <p>Your event has been booked successfully</p>`,
+            }
+
+            transporter.sendMail(mailOptions, (err, data) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(data);
+                }
+
+            })
             QRCode.toDataURL(`${registrant_name} ${email} ${phone} ${event_date} ${event_duration} ${event_type}`, (err, url) => {
                 if (err) {
                     res.status(500).json({
