@@ -29,11 +29,6 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    duration: {
-        type: String,
-        required: true,
-        default: "3 months"
-    },
     
     createdAt: {
         type: Date,

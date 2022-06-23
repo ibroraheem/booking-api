@@ -2,14 +2,14 @@ const Events = require("../model/event")
 const QRCode = require('qrcode')
 require("dotenv").config()
 
-exports.bookEvent = async (req, res, next) => {
+exports.bookEvent = async (req, res) => {
     const { name, email, phone, date, duration, type } = req.body
     if (name && email && phone && date && duration && type) {
         await Events.create({
             name, email, phone, date, duration, type
         }).then(() => {
 
-                        QRCode.toDataURL(`Name: ${name} <br /> Email: ${email} <br/> Phone: ${phone} <br/> Date: ${date} <br/> Duration: ${duration}<br /> Event Type: ${type}`, (err, url) => {
+                        QRCode.toDataURL(`Name: ${name} Email: ${email} Phone: ${phone}  Date: ${date} Duration: ${duration} Event Type: ${type}`, (err, url) => {
                 if (err) {
                     res.status(500).json({
                         message: "Error in generating QR Code",
