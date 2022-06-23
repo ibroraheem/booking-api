@@ -22,10 +22,7 @@ const WorkspaceSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    amount: {
-        type: String,
-        required: true
-    },
+    
     createdAt: {
         type: Date,
         default:  Date.now
