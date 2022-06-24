@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
-const url = process.env.MONGO_URI || "mongodb+srv://ibro:ibro@cluster0.4jxx3fe.mongodb.net/?retryWrites=true&w=majority"
+const url = process.env.MONGO_URI
 
 
 const connectDB =  () => {

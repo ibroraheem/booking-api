@@ -16,18 +16,20 @@ const EventSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+
     duration: {
         type: String,
         required: true
     },
-    type: {
+    type:{
         type: String,
         required: true
     },
+
     createdAt: {
-        type: Date,
-        default: Date.now
-    }
+    type: Date,
+    default: Date.now
+}
 })
 const Event = mongoose.model("Event", EventSchema)
 module.exports = Event

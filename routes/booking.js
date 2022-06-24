@@ -10,6 +10,7 @@ router.route("/course").post(Course.registerCourse)
 router.route("/bookedspaces").get(Workspace.bookedSpaces)
 router.route("/bookedevents").get(Event.bookedEvents)
 router.route("/trainees").get(Course.displayTrainees)
+
 module.exports = router
 
 

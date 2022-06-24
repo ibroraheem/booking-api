@@ -10,7 +10,12 @@ exports.bookWorkspace = async (req, res, next) => {
             name, email, phone, from, to
         }).then(() => {
 
-            QRCode.toDataURL(`Name: ${name} <br /> Email: ${email} <br /> Phone: ${phone} <br /> Booked From: ${from} <br /> Till: ${to}`, (err, url) => {
+            QRCode.toDataURL(`
+            Name: ${name} 
+            Email: ${email} 
+            Phone: ${phone}
+            Booked From: ${from}
+            Till: ${to}`, (err, url) => {
                 if (err) {
                     res.status(500).json({
                         message: "Error in generating QR Code",
